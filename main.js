@@ -27,3 +27,33 @@ function modelLoaded()
 {
 console.log('Model Loaded!');
 }
+function speak()
+{
+    var synth = window.speechSynthesis;
+    speak_data_1 = "The First Prediction is " + prediction_1;
+    var utterThis = new SpeechSynthesisUtterance(speak_data_1);
+    synth.speak(utterThis);
+
+}
+function check()
+ { 
+     img = document.getElementById('captured_image'); 
+     classifier.classify(img, gotResult); 
+ }
+ function gotResult (error,result) {
+    if(error) {
+        console.error(error);
+    }
+    function gotResult (error,result) {
+        if(error) {
+            console.error(error);
+        } else {
+            console.log(results);
+            document.getElementById("result_emotion_name").innerHTML = result[0].label;
+            prediction_1 = results[0].label;
+            speak();
+            if(results[0].label == "happy")
+            {
+                document.getElementById("update_emoji").innerHTML = "&#128522;";
+            }     
+         
